@@ -9,11 +9,19 @@
   "author": "Darz",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-proposal-private-methods": "7.13.0",
+    "@babel/plugin-proposal-private-property-in-object": "7.13.0",
     "@parcel/transformer-sass": "^2.6.1",
     "parcel": "^2.6.1"
   },
   "dependencies": {
     "core-js": "^3.25.0",
     "regenerator-runtime": "^0.13.9"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugins-proposal-class-properties",
+      "@babel/plugins-proposal-private-methods"
+    ]
   }
 }
