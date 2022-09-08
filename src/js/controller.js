@@ -30,6 +30,12 @@ const controlRecipes = async function () {
   }
 };
 
+const controlSearchResults = async function () {
+  try {
+    model.loadSearchResults();
+  } catch (err) {}
+};
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
 };
