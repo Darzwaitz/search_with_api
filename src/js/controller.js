@@ -8,9 +8,9 @@ import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
 
 // parcel cmd
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 // https://forkify-api.herokuapp.com/v2
 
@@ -48,7 +48,7 @@ const controlSearchResults = async function () {
 
     // render search resultz
     // console.log(model.state.search.results);
-    resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResults());
   } catch (err) {
     console.log(err);
   }
