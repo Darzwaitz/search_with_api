@@ -2,6 +2,7 @@ import icons from '../../img/icons.svg';
 
 export default class View {
   _data;
+
   render(data) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
@@ -19,7 +20,7 @@ export default class View {
     this._data = data;
     const newMarkup = this._generateMarkup();
 
-    const newDom = document.createRange().createContextualFragment(newMArkup);
+    const newDom = document.createRange().createContextualFragment(newMarkup);
   }
 
   _clear() {
