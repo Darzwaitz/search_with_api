@@ -34,6 +34,7 @@ export default class View {
       const curEl = curElements[i];
       console.log(curEl, newEl.isEqualNode(curEl));
 
+      // updates changed TEXT
       if (
         !newEl.isEqualNode(curEl) &&
         newEl.firstChild?.nodeValue.trim() !== ''
@@ -41,6 +42,12 @@ export default class View {
         console.log('🔔', newEl.firstChild.nodeValue.trim());
         curEl.textContent = newEl.textContent;
       }
+
+      // updatez changed ATTRIBUTEZ
+      if (!newEl.isEqualNode(curEl)) console.log(Array.from(newEl.attributes));
+      Array.from(newEl.attributes).forEach(attr =>
+        curEl.setAttribute(attr.name, attr.value)
+      );
     });
   }
 
