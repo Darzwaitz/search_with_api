@@ -20,7 +20,28 @@ export default class View {
     this._data = data;
     const newMarkup = this._generateMarkup();
 
-    const newDom = document.createRange().createContextualFragment(newMarkup);
+    // create new DOM fragment with these JS methodz
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    // select all html elements with new DOM fragment and return as NodeList
+    const newElements = Array.from(newDOM.querySelectorAll('*'));
+    // console.log(newElements);
+    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+    // console.log(curElements);
+    // console.log(newElements);
+
+    // compare new and previous arrays
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+      console.log(curEl, newEl.isEqualNode(curEl));
+
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ''
+      ) {
+        console.log('🔔', newEl.firstChild.nodeValue.trim());
+        curEl.textContent = newEl.textContent;
+      }
+    });
   }
 
   _clear() {
