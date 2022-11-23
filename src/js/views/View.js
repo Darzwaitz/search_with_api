@@ -29,7 +29,7 @@ export default class View {
     // compare new and previous arrays
     newElements.forEach((newEl, i) => {
       const curEl = curElements[i];
-      console.log(curEl, newEl.isEqualNode(curEl));
+      // console.log(curEl, newEl.isEqualNode(curEl));
 
       // updates changed TEXT
       if (

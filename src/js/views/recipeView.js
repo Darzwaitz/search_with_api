@@ -25,9 +25,12 @@ class RecipeView extends View {
 
   addHandlerAddBookmark(handler) {
     this._parentElement.addEventListener('click', function (e) {
+      // const btn = e.target.closest('.btn--bookmark');
       const btn = e.target.closest('.btn--bookmark');
       if (!btn) return;
       handler();
+      // console.log('page init');
+      // console.log(btn);
     });
   }
 
@@ -97,7 +100,6 @@ class RecipeView extends View {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-
           ${this._data.ingredients.map(this._generateMarkupIngredient).join('')}
           </ul>
         </div>
