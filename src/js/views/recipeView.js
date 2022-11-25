@@ -31,6 +31,7 @@ class RecipeView extends View {
       handler();
       // console.log('page init');
       // console.log(btn);
+      // console.log('addHandlerAddBookmark');
     });
   }
 
