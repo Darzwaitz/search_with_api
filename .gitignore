@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-/src/js/config.js
+src/js/config.js
 src/img
 .parcel-cache
 
