@@ -1,3 +1,4 @@
+import { async } from 'regenerator-runtime';
 import { TIMEOUT_SEC } from './config.js';
 
 const timeout = function (s) {
@@ -8,9 +9,19 @@ const timeout = function (s) {
   });
 };
 
-export const getJSON = async function (url) {
+// both get and send JSON with this method
+export const AJAX = async function (url, uploadData = undefined) {
   try {
-    const fetchPromise = fetch(url);
+    const fetchPromise = uploadData
+      ? fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(uploadData),
+        })
+      : fetch(url);
+
     const res = await Promise.race([fetchPromise, timeout(TIMEOUT_SEC)]);
     const data = await res.json();
 
@@ -21,21 +32,34 @@ export const getJSON = async function (url) {
   }
 };
 
-export const sendJSON = async function (url, uploadData) {
-  try {
-    const fetchPromise = fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(uploadData),
-    });
-    const res = await Promise.race([fetchPromise, timeout(TIMEOUT_SEC)]);
-    const data = await res.json();
+// export const getJSON = async function (url) {
+//   try {
+//     const fetchPromise = fetch(url);
+//     const res = await Promise.race([fetchPromise, timeout(TIMEOUT_SEC)]);
+//     const data = await res.json();
 
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-    return data;
-  } catch (err) {
-    throw err;
-  }
-};
+//     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+//     return data;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
+
+// export const sendJSON = async function (url, uploadData) {
+//   try {
+//     const fetchPromise = fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(uploadData),
+//     });
+//     const res = await Promise.race([fetchPromise, timeout(TIMEOUT_SEC)]);
+//     const data = await res.json();
+
+//     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+//     return data;
+//   } catch (err) {
+//     throw err;
+//   }
+// };
